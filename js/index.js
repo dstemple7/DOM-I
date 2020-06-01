@@ -9,7 +9,7 @@ const siteContent = {
     "img-src": "img/logo.png"
   },
   "cta": {
-    "h1": "DOM Is Awesome",
+    "h1": "DOM <br/> Is <br/> Awesome",
     "button": "Get Started",
     "img-src": "img/header-img.png"
   },
@@ -28,7 +28,7 @@ const siteContent = {
   },
   "contact": {
     "contact-h4" : "Contact",
-    "address" : "123 Way 456 Street Somewhere, USA",
+    "address" : "123 Way 456 Street <br/> Somewhere, USA",
     "phone" : "1 (888) 888-8888",
     "email" : "sales@greatidea.io",
   },
@@ -41,29 +41,14 @@ const siteContent = {
 let logo = document.getElementById("logo-img")
 logo.setAttribute('src', siteContent["nav"]["img-src"])
 
-const theNav = document.querySelector('nav')
-const childrenOfNav = theNav.children
-
-const navLink1 = childrenOfNav[0]
-navLink1.href, navLink1.textContent = siteContent["nav"]["nav-item-1"]
-
-const navLink2 = childrenOfNav[1]
-navLink2.href, navLink2.textContent = siteContent["nav"]["nav-item-2"]
-
-const navLink3 = childrenOfNav[2]
-navLink3.href, navLink3.textContent = siteContent["nav"]["nav-item-3"]
-
-const navLink4 = childrenOfNav[3]
-navLink4.href, navLink4.textContent = siteContent["nav"]["nav-item-4"]
-
-const navLink5 = childrenOfNav[4]
-navLink5.href, navLink5.textContent = siteContent["nav"]["nav-item-5"]
-
-const navLink6 = childrenOfNav[5]
-navLink6.href, navLink6.textContent = siteContent["nav"]["nav-item-6"]
+const theNav = document.querySelectorAll('header nav a')
+const navLinkText = Object.values(siteContent.nav)
+for (let i = 0; i < theNav.length; i++){
+  theNav[i].textContent = navLinkText[i]
+}
 
 const ctaH1 = document.querySelector('h1')
-ctaH1.textContent = siteContent["cta"]["h1"]
+ctaH1.innerHTML = siteContent["cta"]["h1"]
 
 const ctaButton = document.querySelector('button')
 ctaButton.textContent = siteContent["cta"]["button"]
@@ -71,23 +56,11 @@ ctaButton.textContent = siteContent["cta"]["button"]
 const ctaImage = document.querySelector('#cta-img')
 ctaImage.setAttribute('src', "img/header-img.png")
 
-const topH4One = document.querySelector('.top-content h4:nth-of-type(1)')
-topH4One.textContent = siteContent["main-content"]["features-h4"]
-
-const topPOne = document.querySelector('.top-content p:nth-of-type(1)')
-topPOne.textContent = siteContent["main-content"]["features-content"]
-
 const middleImage = document.querySelector('#middle-img')
 middleImage.setAttribute('src', "img/mid-page-accent.jpg")
 
-const bottomH4One = document.querySelector('.bottom-content h4')
-bottomH4One.textContent = siteContent["main-content"]["services-h4"]
-
-const bottomPOne = document.querySelector('.bottom-content p')
-bottomPOne.textContent = siteContent["main-content"]["services-content"]
-
 const contactInfo2 = document.querySelector('.contact p:nth-of-type(1)')
-contactInfo2.textContent = siteContent["contact"]["address"]
+contactInfo2.innerHTML = siteContent["contact"]["address"]
 
 const contactInfo3 = document.querySelector('.contact p:nth-of-type(2)')
 contactInfo3.textContent = siteContent["contact"]["phone"]
@@ -104,7 +77,7 @@ const headingText = {
   heading3: siteContent["main-content"]["services-h4"],
   heading4: siteContent["main-content"]["product-h4"],
   heading5: siteContent["main-content"]["vision-h4"],
-  heading6: siteContent["contact"]["contact-h4"]
+  heading6: siteContent["contact"]["contact-h4"],
 }
 const theHeadingsArray = Object.values(headingText)
 const allH4s = document.querySelectorAll('h4')
@@ -126,3 +99,33 @@ const allParagraphs = document.querySelectorAll('.text-content p')
 for (let i = 0; i < allParagraphs.length; i++) {
   allParagraphs[i].textContent = theParagraphsArray[i]
 }
+
+// Task 3: Add new content
+// Change the color of the navigation text to be green.
+
+const allNavText = document.querySelectorAll('a')
+
+allNavText.forEach(nav =>{
+  nav.style.color = 'green'
+})
+
+// Utilize `.appendChild()` and `.prepend()` to add two new items to the navigation system. You can call them whatever you want.
+const nav = document.querySelector('nav')
+
+const newLinksProps = {
+  href: '#',
+  textContent: 'FAQ',
+  href2: '#',
+  textContent2: 'Deals',
+}
+const newlink = document.createElement('a')
+const newlink2 = document.createElement('a')
+
+newlink.href = newLinksProps.href
+newlink.textContent = newLinksProps.textContent
+
+newlink2.href = newLinksProps.href2
+newlink2.textContent = newLinksProps.textContent2
+
+nav.appendChild(newlink)
+nav.prepend(newlink2)
